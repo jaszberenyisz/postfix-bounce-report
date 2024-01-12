@@ -25,7 +25,7 @@ RECIPIENTS_LIST=$(xmllint --xpath 'string(/config/recipients_list)' $CONFIGFILE)
 DOMAINS=$(xmllint --xpath 'string(/config/domains)' $CONFIGFILE)
 
 TIME_START=$(date +"%s")
-ALLBOUNCES=`cat "${MAILLOG}" |grep "$(date -d '-'${PERIOD}' hour' '+%b %e')" |grep "${PATTERN}"`
+ALLBOUNCES=`cat "${MAILLOG}" |grep -i "$(date -d '-'${PERIOD}' hour' '+%b %e')" |grep "${PATTERN}"`
 COUNTBOUNCES=$( [ -n "$ALLBOUNCES" ] && echo "$ALLBOUNCES" | wc -l || echo 0 )
 
 # Function for creating the HTML report
